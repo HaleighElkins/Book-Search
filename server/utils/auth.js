@@ -1,8 +1,21 @@
+const { GraphQLError } = require('graphql');
 const jwt = require('jsonwebtoken');
 
 // set token secret and expiration date
 const secret = 'mysecretsshhhhh';
 const expiration = '2h';
+
+// Custom error class
+class AutenticationError extends GraphQLError {
+  constructor() {
+    super('Could not authenticate user.', {
+      extensions: {
+        code: 'UNAUTHENTICATED',
+      },
+    });
+  }
+}
+
 
 module.exports = {
   // function for our authenticated routes

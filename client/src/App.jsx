@@ -1,14 +1,12 @@
-import './App.css';
-// import React from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
-import { setContext } from '@apollo/client/link.context';
+import { setContext } from '@apollo/client/link/context';
 import { Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
 
 
 // GraphQL 
 const httpLink = createHttpLink({ 
-  uri: '/graphgl',
+  uri: '/graphql',
 });
 
 // Middleware 
@@ -30,7 +28,7 @@ const client = new ApolloClient({
 
 const App = () => {
   return ( 
-    <ApolloProvider client = {client}>
+    <ApolloProvider client={client}>
       <Navbar />
       <Outlet />
     </ApolloProvider>

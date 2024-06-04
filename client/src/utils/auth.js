@@ -20,6 +20,7 @@ class AuthService {
     try {
       const decoded = decode(token);
       if (decoded.exp < Date.now() / 1000) {
+        localStorage.removeItem('id_token');
         return true;
       } else return false;
     } catch (err) {
@@ -43,6 +44,19 @@ class AuthService {
     localStorage.removeItem('id_token');
     // this will reload the page and reset the state of the application
     window.location.assign('/');
+  }
+
+  getUserId() {
+    try {
+      const token = this.getToken();
+      if (!token) return null;
+  
+      const decoded = decode(token);
+      return decoded?.data?._id ?? null;
+    } catch (error) {
+      console.error('Failed to decode token:', error);
+      return null;
+    }
   }
 }
 

@@ -55,7 +55,7 @@
 const { GraphQLError } = require('graphql');
 const jwt = require('jsonwebtoken');
 
-// set token secret and expiration date
+// Set token secret and expiration date
 const secret = 'mysecretsshhhhh';
 const expiration = '2h';
 
@@ -70,38 +70,37 @@ class AuthenticationError extends GraphQLError {
   }
 }
 
-module.exports = {
-  // function for our authenticated routes
-  authMiddleware: function (req, res, next) {
-    // allows token to be sent via req.query or headers
-    let token = req.query.token || req.headers.authorization;
+const authMiddleware = ({ req }) => {
+  // Allows token to be sent via req.query or headers
+  let token = req.query.token || req.headers.authorization;
 
-    // Ensure token is present
-    if (!token) {
-      throw new AuthenticationError('Authentication token is missing.');
-    }
-
-    // Extract token from authorization header if present
-    if (req.headers.authorization) {
-      const [bearer, tokenValue] = req.headers.authorization.split(' ');
-      if (bearer !== 'Bearer' || !tokenValue) {
-        throw new AuthenticationError('Invalid authorization header format.');
-      }
+  // Ensure token is present
+  if (req.headers.authorization) {
+    const [bearer, tokenValue] = req.headers.authorization.split(' ');
+    if (bearer === 'Bearer') {
       token = tokenValue;
     }
+  }
 
-    // verify token and get user data out of it
+  // Verify token and get user data out of it
+  if (token) {
     try {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
       req.user = data;
-      next();
     } catch (error) {
-      throw new AuthenticationError('Invalid or expired token.');
+      console.log('Invalid or expired token:', error.message);
     }
-  },
+  }
 
-  signToken: function ({ username, email, _id }) {
-    const payload = { username, email, _id };
-    return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
-  },
+  return req;
+};
+
+const signToken = ({ username, email, _id }) => {
+  const payload = { username, email, _id };
+  return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
+};
+
+module.exports = {
+  authMiddleware,
+  signToken,
 };

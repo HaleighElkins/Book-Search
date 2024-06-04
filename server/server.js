@@ -35,6 +35,11 @@ const startApolloServer = async () => {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
+    context: ({ req }) => {
+      // Apply authMiddleware to attach user to the request
+      const contextReq = authMiddleware({ req });
+      return { user: contextReq.user };
+    },
   });
 
   await server.start();
@@ -42,17 +47,20 @@ const startApolloServer = async () => {
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
 
-  app.use('/graphql', expressMiddleware(server, {
-    context: authMiddleware
-  }));
+  // Apply Apollo Server middleware
+  app.use('/graphql', expressMiddleware(server));
 
+  // Serve static files in production
   if (process.env.NODE_ENV === 'production') {
-    // Serve static files from the 'dist' (or 'build') directory
     app.use(express.static(path.join(__dirname, '../client/dist')));
 
-    // Serve the index.html file for any unknown routes
     app.get('*', (req, res) => {
       res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+    });
+  } else {
+    // Serve static files in development (assuming React is running separately)
+    app.get('*', (req, res) => {
+      res.send('Development mode: Use the React dev server');
     });
   }
 

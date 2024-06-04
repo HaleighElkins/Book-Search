@@ -4,8 +4,8 @@
   "description": "",
   "main": "server/server.js",
   "scripts": {
-    "start": "node server/server.js",
-    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm run dev\"",
+    "start": "cross-env NODE_ENV=production node server/server.js",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm run start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "build": "cd client && npm run build",
     "render-build": "npm install && npm run build"
@@ -19,6 +19,9 @@
   "dependencies": {
     "@apollo/server": "^4.10.4",
     "apollo-server-express": "^3.13.0",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2",
+    "mongoose": "^6.0.13",
+    "cross-env": "^7.0.3"
   }
 }

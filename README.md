@@ -25,7 +25,11 @@ The main usage of this code is a solid reference in converting a RESTful API to 
 
 <a id="Visuals"></a>
 ## Visuals
-
+![Screenshot 2024-06-04 134658](https://github.com/HaleighElkins/Book-Search/assets/152942336/5a028ad4-29c0-43ce-9499-111e2e96d97f)
+![Screenshot 2024-06-04 134703](https://github.com/HaleighElkins/Book-Search/assets/152942336/15286c70-8970-4921-a028-d09e673224f7)
+![Screenshot 2024-06-04 134708](https://github.com/HaleighElkins/Book-Search/assets/152942336/f6543d40-6c82-4bdc-b2b2-c5e0ee9e086a)
+![Screenshot 2024-06-04 134728](https://github.com/HaleighElkins/Book-Search/assets/152942336/455f189f-e6a6-4a31-8ef1-8a30d0ed27c8)
+![Screenshot 2024-06-04 134753](https://github.com/HaleighElkins/Book-Search/assets/152942336/b49478f9-1113-44fe-905e-5e5feac4400a)
 
 
 <a id="acknowledgment"></a>

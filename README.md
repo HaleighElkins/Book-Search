@@ -21,7 +21,7 @@ Please run npm i to install everything needed.
 
 <a id="usage"></a>
 ## Usage
-The main usage of this code is a solid reference in converting a RESTful API to a GraphQL API. There we a lot of steps and troubleshooting in resolving this. I think seeing the commits and comments will help any future similar experience.
+This code serves as a valuable reference for converting a RESTful API to a GraphQL API. The process involved numerous steps and troubleshooting efforts. Reviewing the commits and comments will be beneficial for anyone undertaking a similar project in the future.
 
 <a id="Visuals"></a>
 ## Visuals
@@ -34,5 +34,28 @@ The main usage of this code is a solid reference in converting a RESTful API to 
 
 <a id="acknowledgment"></a>
 ## Authors and Acknowledgment
-Base code is from DU Coding Bootcamp, otherwise I have run through it myself.
+Base code is from DU Coding Bootcamp, the rest I have added some code, files, and deleted some myself. 
+ 
+ I also used the internet to help with some things here are teh refs: 
+
+ https://stackoverflow.com/questions/16173469/what-is-server-side-rendering-of-javascript
+
+ https://stackoverflow.com/questions/4663927/what-is-rest-slightly-confused 
+
+ https://stackoverflow.com/questions/65749404/how-should-i-design-a-rest-api 
+
+ https://meta.stackoverflow.com/questions/374740/stack-overflow-rest-api 
+
+ https://stackoverflow.com/questions/41141577/graphql-or-rest
+
+ https://stackoverflow.com/questions/60200177/whats-the-difference-between-graphql-and-rest-api 
+
+ 
+
+
+
+
+
+
+
 

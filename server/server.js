@@ -20,7 +20,6 @@
 //   app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));
 // });
 
-
 const express = require('express');
 const path = require('path');
 const db = require('./config/connection');
@@ -37,6 +36,7 @@ const startApolloServer = async () => {
     typeDefs,
     resolvers,
   });
+
   await server.start();
 
   app.use(express.urlencoded({ extended: false }));
@@ -47,7 +47,10 @@ const startApolloServer = async () => {
   }));
 
   if (process.env.NODE_ENV === 'production') {
+    // Serve static files from the 'dist' (or 'build') directory
     app.use(express.static(path.join(__dirname, '../client/dist')));
+
+    // Serve the index.html file for any unknown routes
     app.get('*', (req, res) => {
       res.sendFile(path.join(__dirname, '../client/dist/index.html'));
     });

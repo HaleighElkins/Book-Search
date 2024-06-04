@@ -32,6 +32,7 @@ const SaveBookComponent = () => {
     }
 
     try {
+      console.log('Token found:', token);
       const { data } = await saveBookMutation({
         variables: { ...book },
         context: {
